@@ -1,0 +1,15 @@
+<div id="user-widget">
+  <% if current_user %>
+    Welcome <strong><%= current_user.name %></strong>!
+    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  <% else %>
+    <%= link_to "Login with doorkeeper server", "/auth/demo", id: "sign_in" %>
+  <% end %>
+
+<a href="/after_oauth" >Click here</a>
+
+
+</div>
+
+
+

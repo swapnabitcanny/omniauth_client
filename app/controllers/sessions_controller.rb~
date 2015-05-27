@@ -1,0 +1,17 @@
+class SessionsController < ApplicationController
+  def create
+	token = @oauth_client.auth_code.get_token(params[:code], :redirect_uri => "http://localhost:4000/after_oauth")
+	response = token.get('/api/v1/me.json')
+	render :json => response
+	#auth = request.env["omniauth.auth"]
+    	#user = User.from_omniauth(env["omniauth.auth"])
+	#session[:access_token] = auth["credentials"]["token"]
+    	#session[:user_id] = user.id
+    	#redirect_to root_url
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_url
+  end
+end
